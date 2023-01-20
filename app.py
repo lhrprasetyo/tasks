@@ -39,6 +39,22 @@ def tambah():
     db.session.commit()
     return redirect ('/k')
     
+@app.route("/k/<id>/edit")
+def edit_pendaftar(id):
+    kayu = Kayu.query.filter_by(id=id).first()
+    return render_template('edit_kayu.html',kayu = kayu)
+
+
+@app.route('/k/<id>/update', methods=['post'])
+def update_kayu(id):
+    kayu = Kayu.query.filter_by(id=id).first()
+    kayu.jenis= request.form.get("jenis")
+    kayu.berat= request.form.get("berat")
+    kayu.harga= request.form.get("harga")
+    db.session.add(kayu)
+    db.session.commit()
+    return redirect("/k")
+
 
 if "__main__"==__name__:
     app.run(debug=True, port = 2000)
