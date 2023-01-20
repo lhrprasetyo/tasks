@@ -28,6 +28,5 @@ def tambah_kayu():
     return render_template('tambah_kayu.html')
 
 
-
 if "__main__"==__name__:
     app.run(debug=True, port = 2000)
