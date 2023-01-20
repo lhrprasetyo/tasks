@@ -27,6 +27,18 @@ def list_kayu():
 def tambah_kayu():
     return render_template('tambah_kayu.html')
 
+@app.route('/tambah_kayu/save', methods = ['POST'])
+def tambah():
+    if request.method == 'POST': 
+        f_jenis = request.form.get("jenis")
+        f_berat = request.form.get("berat")
+        f_harga = request.form.get("harga")
+
+    p=Kayu(jenis=f_jenis,berat=f_berat,harga=f_harga)
+    db.session.add(p)
+    db.session.commit()
+    return redirect ('/k')
+    
 
 if "__main__"==__name__:
     app.run(debug=True, port = 2000)
