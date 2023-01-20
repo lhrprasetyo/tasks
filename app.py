@@ -55,12 +55,6 @@ def update_kayu(id):
     db.session.commit()
     return redirect("/k")
 
-@app.route("/k/<id>/delete")
-def delete_pendaftar(id):
-    kayu = Kayu.query.filter_by(id=id).first()
-    db.session.delete(kayu)
-    db.session.commit()
-    return redirect("/k")
 
 if "__main__"==__name__:
     app.run(debug=True, port = 2000)
